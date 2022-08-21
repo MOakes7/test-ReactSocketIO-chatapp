@@ -16,6 +16,13 @@ const socketIO = require("socket.io")(http, {
 //socket server listening for connection event or opening the page and logging the user by ID
 socketIO.on("connection", (socket) => {
 	console.log(`⚡: ${socket.id} user just connected!`);
+
+	//event listener for messages and send message to client
+	socket.on("message", (data) => {
+		//console.log(data);
+		socketIO.emit("messageResponse", data);
+	});
+
 	//disconnect event showing a user closed the browser or refreshed the page
 	socket.on("disconnect", () => {
 		console.log("🔥: A user disconnected");
