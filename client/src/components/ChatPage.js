@@ -7,6 +7,7 @@ const ChatPage = ({ socket }) => {
 	const [messages, setMessages] = useState([]);
 
 	useEffect(() => {
+		console.log("this is firing");
 		socket.on("messageResponse", (data) => setMessages([...messages, data]));
 	}, [socket, messages]);
 	return (
